@@ -1,0 +1,52 @@
+[package]
+name = "crypto-server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# --- Async runtime ---
+tokio = { version = "1.53", features = ["full"] }
+futures-util = "0.3"
+tokio-stream = "0.1"
+
+# --- HTTP API ---
+axum = { version = "0.7.9", features = ["ws", "macros"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+# --- Binance ---
+binance_spot_connector_rust = { version = "1.3.0", features = ["enable-tokio-tungstenite"] }
+tokio-tungstenite = { version = "0.23", features = ["native-tls"] }
+
+# --- HTTP client (REST backfill) ---
+reqwest = { version = "0.12", features = ["json", "stream"] }
+
+# --- Baza danych ---
+redb = "4.1"
+
+# --- CSV / ZIP backfill ---
+zip = "3.0"
+csv = "1.3"
+
+# --- Serializacja ---
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# --- Logi ---
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# --- Config ---
+config = "0.14"
+
+# --- Błędy ---
+thiserror = "2.0"
+anyhow = "1.0"
+
+# --- Czas ---
+chrono = { version = "0.4", features = ["serde"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
