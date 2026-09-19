@@ -1,13 +1,13 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub struct AggTrade{
     #[serde(rename = "a")]
     pub agg_trade_id: u64,
      #[serde(rename = "p")]
-    pub price: f64,
+    pub price: String,
      #[serde(rename = "q")]
-    pub qty: f64,
+    pub qty: String,
      #[serde(rename = "f")]
     pub first_trade_id: u64,
      #[serde(rename = "l")]
